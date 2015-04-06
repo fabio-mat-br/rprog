@@ -1,0 +1,17 @@
+{
+    "contents" : "source(\"http://d396qusza40orc.cloudfront.net/rprog%2Fscripts%2Fsubmitscript1.R\")\nsubmit()\n",
+    "created" : 1428360184250.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2450939490",
+    "id" : "30741970",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

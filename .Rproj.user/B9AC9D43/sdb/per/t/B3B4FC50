@@ -1,0 +1,17 @@
+{
+    "contents" : "pollutantmean <- function(directory, pollutant, id = 1:332) {\n  files <- list.files(directory)\n  filenames <- as.numeric(sub(\"\\\\.csv$\",\"\",files))\n  temp <- c();\n  for(i in id) {\n    file = files[match(i,filenames)]\n    curfile <- read.csv(paste(directory,\"/\", file, sep=\"\"))\n    temp <- c(temp, curfile[,pollutant])\n  }\n  result <- mean(temp, na.rm = TRUE)\n  return(round(result, 3)) \n}",
+    "created" : 1428360053858.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4221645130",
+    "id" : "B3B4FC50",
+    "lastKnownWriteTime" : 1428360068,
+    "path" : "D:/projetos/rprog/pollutantmean.R",
+    "project_path" : "pollutantmean.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

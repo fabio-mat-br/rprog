@@ -1,0 +1,17 @@
+{
+    "contents" : "complete <- function(directory, id = 1:332) {\n  nobs <- c()\n  for(i in id){\n    ccases <- complete.cases(read.csv(paste(directory, \"/\", formatC(i, width = 3, flag = \"0\"), \".csv\", sep = \"\")))\n    nobs <- c(nobs, sum(ccases))\n  }\n  return(data.frame(id, nobs)) \n}",
+    "created" : 1428360082531.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "873508423",
+    "id" : "B0E5D934",
+    "lastKnownWriteTime" : 1428360089,
+    "path" : "D:/projetos/rprog/complete.R",
+    "project_path" : "complete.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

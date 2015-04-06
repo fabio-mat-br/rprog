@@ -1,0 +1,17 @@
+{
+    "contents" : "## PART 1\npollutantmean <- function(directory, pollutant, id = 1:332) {\n  files <- list.files(directory)\n  filenames <- as.numeric(sub(\"\\\\.csv$\",\"\",files))\n  temp <- c();\n  for(i in id) {\n    file = files[match(i,filenames)]\n    curfile <- read.csv(paste(directory,\"/\", file, sep=\"\"))\n    temp <- c(temp, curfile[,pollutant])\n  }\n  result <- mean(temp, na.rm = TRUE)\n  return(round(result, 3)) \n}\n\n#pollutantmean(\"specdata\", \"sulfate\", 1:10) == 4.064\n#pollutantmean(\"specdata\", \"nitrate\", 70:72) == 1.706\n#pollutantmean(\"specdata\", \"nitrate\", 23) == 1.281\n\n# PART 2\n## 'directory' is a character vector of length 1 indicating\n## the location of the CSV files\n\n## 'id' is an integer vector indicating the monitor ID numbers\n## to be used\n\n## Return a data frame of the form:\n## id nobs\n## 1  117\n## 2  1041\n## ...\n## where 'id' is the monitor ID number and 'nobs' is the\n## number of complete cases\ncomplete <- function(directory, id = 1:332) {\n  nobs <- c()\n  for(i in id){\n    ccases <- complete.cases(read.csv(paste(directory, \"/\", formatC(i, width = 3, flag = \"0\"), \".csv\", sep = \"\")))\n    nobs <- c(nobs, sum(ccases))\n  }\n  return(data.frame(id, nobs)) \n}\n#complete(\"specdata\", c(2, 4, 8, 10, 12))\n#complete(\"specdata\", 30:25)\n#complete(\"specdata\", 3)\n\n## 'directory' is a character vector of length 1 indicating\n## the location of the CSV files\n\n## 'threshold' is a numeric vector of length 1 indicating the\n## number of completely observed observations (on all\n## variables) required to compute the correlation between\n## nitrate and sulfate; the default is 0\n\n## Return a numeric vector of correlations\n\ncorr <- function(directory, threshold = 0) {\nfiles <- complete(directory)\nids <- files[files[\"nobs\"] > threshold, ]$id\ntempcor <- c()\nfor(i in ids){\n  curfile <- read.csv(paste(directory, \"/\", formatC(i, width = 3, flag = \"0\"), \".csv\", sep = \"\"))\n  corr_ <- curfile[complete.cases(curfile), ]\n  tempcor <- c(tempcor, cor(corr_$sulfate, corr_$nitrate))\n}\nreturn(tempcor)\n}\ncr <- corr(\"specdata\", 150)\nhead(cr)\nsummary(cr)\n\n\n\n",
+    "created" : 1428351745448.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "95259061",
+    "id" : "1DFCEBDA",
+    "lastKnownWriteTime" : 1428360140,
+    "path" : "D:/projetos/rprog/Assignment01.R",
+    "project_path" : "Assignment01.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
